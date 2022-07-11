@@ -132,8 +132,10 @@ dmypy.json
 cbo-results/
 regevo-results/
 regevo-uq-results/
+agebo-results/
 *.png
 *.csv
 *.yaml
 *.npz
 *.npy
+slides/
