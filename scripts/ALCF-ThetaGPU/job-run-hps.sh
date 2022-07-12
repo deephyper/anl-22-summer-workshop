@@ -12,7 +12,7 @@ RANKS_PER_NODE=8
 # Initialization of environment
 . /etc/profile
     # Tensorflow optimized for A100 with CUDA 11
-module load conda/2021-11-30
+module load conda/2022-07-01
     # Activate conda env
 conda activate build/dhenv
 

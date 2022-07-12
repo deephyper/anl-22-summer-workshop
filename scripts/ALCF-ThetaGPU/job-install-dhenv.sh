@@ -8,7 +8,7 @@
 . /etc/profile
 
 # create the dhgpu environment:
-module load conda/2021-11-30
+module load conda/2022-07-01
 
 mkdir build && cd build
 conda create -p dhenv --clone base -y
