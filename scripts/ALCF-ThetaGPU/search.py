@@ -6,7 +6,7 @@ import gzip
 
 import numpy as np
 
-from data.utils import load_data_prepared
+from utils import load_data_prepared
 
 from deephyper.nas.metrics import r2, mse
 
@@ -157,7 +157,7 @@ if __name__ == "__main__":
 
                 # Search execution
                 print("Starting the search...")
-                results = search.search(timeout=60*5)
+                results = search.search(timeout=540)
                 print("Search is done")
 
                 results.to_csv(os.path.join("cbo-results", "results.csv"))
