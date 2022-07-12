@@ -24,7 +24,7 @@ DeepHyper Installation
 
 As this procedure needs to be performed on ThetaGPU, we will directly execute it in this ``job-install-dhenv.sh`` submission script (replace the ``$PROJECT_NAME`` with the name of your project allocation, e-g: ``#COBALT -A datascience``):
 
-.. litteralinclude:: job-install-dhenv.sh
+.. literalinclude:: job-install-dhenv.sh
     :language: console
     :caption: **file**: ``job-install-dhenv.sh``
 
@@ -41,7 +41,7 @@ We will be using the problem from the `first notebook of the workshop <https://g
 
 In this script we define the hyperparameter search space as well as run function, and feed it to a search instance using an MPI-based evaluator. 
 
-.. litteralinclude:: search.py
+.. literalinclude:: search.py
     :language: python
     :caption: **file**: ``search.py``
 
@@ -50,7 +50,7 @@ Executing the Search on ThetaGPU
 
 With the evaluator using MPI, we can simply use ``mpirun`` on ThetaGPU to launch it on all the gpus of every allocated node. This is what is done in this submission script (replace the ``$PROJECT_NAME`` with the name of your project allocation, e-g: ``#COBALT -A datascience``) :
 
-.. litteralinclude:: job-run-hps.sh
+.. literalinclude:: job-run-hps.sh
     :language: console
     :caption: **file**: ``job-run-hps.sh``
 
