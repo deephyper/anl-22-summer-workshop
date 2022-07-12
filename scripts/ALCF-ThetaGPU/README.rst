@@ -12,7 +12,7 @@ To connect to Theta via terminal, use:
 
     $ ssh <username>@theta.alcf.anl.gov
 
-Submitting jobs on ThetaGPU is then done from there using the command :
+Submitting jobs on ThetaGPU is then done from there using the command (make sure ``<submission_script>.sh`` is executable by performing ``chmod +x <submission_script>.sh``) :
 
 .. code-block:: console
 
