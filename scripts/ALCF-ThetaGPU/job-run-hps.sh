@@ -4,6 +4,7 @@
 #COBALT -t 60
 #COBALT -A $PROJECT_NAME
 #COBALT --attrs filesystems=home,grand,eagle,theta-fs0
+#COBALT -O job-run-hps
 
 # Nodes Configuration
 COBALT_JOBSIZE=1

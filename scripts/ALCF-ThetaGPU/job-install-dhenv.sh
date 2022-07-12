@@ -1,9 +1,10 @@
 #!/bin/bash
 #COBALT -q single-gpu
 #COBALT -n 1
-#COBALT -t 60
+#COBALT -t 40
 #COBALT -A $PROJECT_NAME
 #COBALT --attrs filesystems=home,theta-fs0,grand
+#COBALT -O job-install-dhenv
 
 . /etc/profile
 
@@ -22,3 +23,6 @@ pip install deephyper["analytics"]
 git clone https://github.com/mpi4py/mpi4py.git
 cd mpi4py/
 MPICC=mpicc python setup.py install
+
+# others
+pip install progressbar2
