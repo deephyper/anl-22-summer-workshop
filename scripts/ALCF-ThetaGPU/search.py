@@ -41,9 +41,14 @@ if gpus:
         print(f"{e}") 
 
 from deephyper.problem import HpProblem
-
 from deephyper.search.hps import CBO
 from deephyper.evaluator import Evaluator
+
+n_components = 5
+if gpu_local_idx == 0:
+    load_data_prepared(
+        n_components=n_components
+    )
 
 
 # Baseline LSTM Model
@@ -121,7 +126,6 @@ problem.add_hyperparameter((1, 3), "num_layers", default_value=1)
 problem.add_hyperparameter((10, 100), "epochs", default_value=20)
 
     # Definition of the function to optimize (configurable model to train)
-n_components = 5
 def run(config):
     # important to avoid memory exploision
     tf.keras.backend.clear_session()
@@ -163,18 +167,14 @@ if __name__ == "__main__":
                 i_max = results.objective.argmax()
                 best_config = results.iloc[i_max][:-4].to_dict()
 
-                best_model, best_history = build_and_train_model(best_config, verbose=1)
+                best_model, best_history = build_and_train_model(best_config, n_components=n_components, verbose=1)
 
                 scores = {"MSE": mse, "R2": r2}
 
-                cached_data = f"processed_data_{n_components}_8_8.npz"
-                with gzip.GzipFile(cached_data, "rb") as f:
-                    data = np.load(f, allow_pickle=True).item()
-                    X_train, y_train = data["train"]
-                    X_valid, y_valid = data["valid"]
-                    X_test, y_test = data["test"]
-                    preprocessor = data["preprocessor"]
-                    
+                (X_train, y_train), (X_valid, y_valid), (X_test, y_test), _ = load_data_prepared(
+                    n_components=n_components
+                )
+
                 for metric_name, metric_func in scores.items():
                     print(f"Metric {metric_name}")
                     y_pred = best_model.predict(X_train)
