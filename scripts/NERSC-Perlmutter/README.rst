@@ -17,7 +17,7 @@ For connecting to Perlmutter, check `documentation <https://docs.nersc.gov/syste
 DeepHyper Installation
 ======================
 
-After logging in Perlmutter, use the `installation script <hhttps://github.com/deephyper/anl-22-summer-workshop/blob/main/scripts/NERSC-Perlmutter/dh_install.sh>`_ provided to install DeepHyper and the associated dependencies. Download the file and run ``source dh_install.sh`` on the terminal. 
+After logging in Perlmutter, use the `installation script <https://github.com/deephyper/anl-22-summer-workshop/blob/main/scripts/NERSC-Perlmutter/dh_install.sh>`_ provided to install DeepHyper and the associated dependencies. Download the file and run ``source dh_install.sh`` on the terminal. 
 
 The script first loads the Perlmutter modules, including cuDNN. 
 
