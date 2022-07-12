@@ -24,8 +24,7 @@ DeepHyper Installation
 
 As this procedure needs to be performed on ThetaGPU, we will directly execute it in this ``job-install-dhenv.sh`` submission script (replace the ``$PROJECT_NAME`` with the name of your project allocation, e-g: ``#COBALT -A datascience``):
 
-.. code-block::: console
-    :caption: **file**: ``job-install-dhenv.sh``
+.. code-block:: console
 
     #!/bin/bash
     #COBALT -q single-gpu
@@ -67,12 +66,11 @@ HPS Definition
 
 We will be using the problem from the `first notebook of the workshop <https://github.com/deephyper/anl-22-summer-workshop/blob/main/notebooks/1-Hyperparameter-Search.ipynb>`_, optimizing a surrogate geophysical model from data.
 
-In this script we define the hyperparameter search space as well as run function, and feed it to a search instance using an MPI-based evaluator. 
+In this ``search.py`` script we define the hyperparameter search space as well as run function, and feed it to a search instance using an MPI-based evaluator. 
 
 .. code-block:: python
-    :caption: **file**: ``search.py``
 
-        import os
+    import os
 
     os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 
@@ -267,10 +265,9 @@ In this script we define the hyperparameter search space as well as run function
 Executing the Search on ThetaGPU
 ================================
 
-With the evaluator using MPI, we can simply use ``mpirun`` on ThetaGPU to launch it on all the gpus of every allocated node. This is what is done in this submission script (replace the ``$PROJECT_NAME`` with the name of your project allocation, e-g: ``#COBALT -A datascience``) :
+With the evaluator using MPI, we can simply use ``mpirun`` on ThetaGPU to launch it on all the gpus of every allocated node. This is what is done in this ``job-run-hps.sh`` submission script (replace the ``$PROJECT_NAME`` with the name of your project allocation, e-g: ``#COBALT -A datascience``) :
 
 .. code-block:: console
-    :caption: **file**: ``job-run-hps.sh``
 
     #!/bin/bash
     #COBALT -q full-node
