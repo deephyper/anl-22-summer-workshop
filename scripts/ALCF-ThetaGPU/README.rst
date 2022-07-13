@@ -68,7 +68,7 @@ We will be using the problem from the `first notebook of the workshop <https://g
 
 In this ``search.py`` script we define the hyperparameter search space as well as run function, and feed it to a search instance using an MPI-based evaluator. 
 
-Note that you need to copy `utils.py <https://github.com/deephyper/anl-22-summer-workshop/blob/main/scripts/ALCF-ThetaGPU/utils.py>` in the current directory for this script to work.
+Note that you need to copy `utils.py <https://github.com/deephyper/anl-22-summer-workshop/blob/main/scripts/ALCF-ThetaGPU/utils.py>`_ in the current directory for this script to work.
 
 .. code-block:: python
 
