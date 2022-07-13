@@ -11,16 +11,7 @@ Official Repository of the ANL 2022 Summer Workshop
 pip install matplotlib
 ```
 
-3. Install [Git-LFS](https://git-lfs.github.com) to download the data when cloning the repository.
-
-On mac it can be installed with Homebrew:
-
-```console
-brew install git-lfs
-git lfs install
-```
-
-4. Clone the repository
+3. Clone the repository
 
 ```console
 git clone https://github.com/deephyper/anl-22-summer-workshop.git
@@ -29,7 +20,7 @@ cd anl-22-summer-workshop/
 
 ### Notebooks Tests
 
-To test the notebooks directly on Colab add this in the before the first cells
+To test the notebooks directly on Colab with the `develop` branch from deephyper add this in the before the first cells
 
 ```ipython
 !rm -rf deephyper_repo/
