@@ -47,7 +47,8 @@ from deephyper.evaluator import Evaluator
 n_components = 5
 if gpu_local_idx == 0:
     load_data_prepared(
-        n_components=n_components
+        n_components=n_components,
+        cache_dir="/dev/shm"
     )
 
 
@@ -68,7 +69,8 @@ def build_and_train_model(config: dict, n_components: int = 5, verbose: bool = 0
     default_config.update(config)
 
     (X_train, y_train), (X_valid, y_valid), _, _ = load_data_prepared(
-        n_components=n_components
+        n_components=n_components,
+        cache_dir="/dev/shm"
     )
 
     layers = []
@@ -172,7 +174,8 @@ if __name__ == "__main__":
                 scores = {"MSE": mse, "R2": r2}
 
                 (X_train, y_train), (X_valid, y_valid), (X_test, y_test), _ = load_data_prepared(
-                    n_components=n_components
+                    n_components=n_components,
+                    cache_dir="/dev/shm"
                 )
 
                 for metric_name, metric_func in scores.items():
