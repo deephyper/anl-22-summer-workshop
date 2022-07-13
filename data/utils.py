@@ -79,9 +79,9 @@ def prepare_as_seq2seq(data, input_horizon=8, output_horizon=8):
     return X, y
 
 
-def load_data_prepared(n_components=5, input_horizon=8, output_horizon=8):
+def load_data_prepared(n_components=5, input_horizon=8, output_horizon=8, cache_dir=""):
 
-    cached_data = f"processed_data_{n_components}_{input_horizon}_{output_horizon}.npz"
+    cached_data = os.path.join(cache_dir, f"processed_data_{n_components}_{input_horizon}_{output_horizon}.npz")
 
     if not (os.path.exists(cached_data)):
         train_data, test_data, _ = load_sst_data()
