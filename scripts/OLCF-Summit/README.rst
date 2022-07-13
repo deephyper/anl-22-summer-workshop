@@ -38,24 +38,25 @@ Lmod is the module system used on Summit. It is an extension of Environment Modu
 
 .. code-block:: console
 
-    $ module load open-ce/1.5.2-py39-0
-    $ module list
+   $ module load open-ce/1.5.2-py39-0
+   $ module list
 
 As of July 2022, this should automatically load and return the following versions of Spectrum MPI, CUDA, etc:
 
-.. code-block:: console
-		
-Currently Loaded Modules:
-  1) xl/16.1.1-10    4) darshan-runtime/3.3.0-lite   7) spectrum-mpi/10.4.0.3-20210112  10) cuda/11.0.3
-  2) lsf-tools/2.0   5) xalt/1.2.1                   8) nsight-compute/2021.2.1         11) open-ce/1.5.2-py39-0
-  3) hsi/5.0.2.p5    6) DefApps                      9) nsight-systems/2021.3.1.54
+.. code-block:: none
+
+   Currently Loaded Modules:
+     1) xl/16.1.1-10    4) darshan-runtime/3.3.0-lite   7) spectrum-mpi/10.4.0.3-20210112  10) cuda/11.0.3
+     2) lsf-tools/2.0   5) xalt/1.2.1                   8) nsight-compute/2021.2.1         11) open-ce/1.5.2-py39-0
+     3) hsi/5.0.2.p5    6) DefApps                      9) nsight-systems/2021.3.1.54
 
 Next, we create a cloned conda environment and install DeepHyper. 
 
 .. code-block:: console
-    $ cd /ccs/proj/<project_id>/<user_id>
-    $ conda create -p dh --clone open-ce-1.5.2-py39-0 -y
-    $ conda activate /autofs/nccs-svm1_proj/<project_id>/<user_id>/dh
+
+   $ cd /ccs/proj/<project_id>/<user_id>
+   $ conda create -p dh --clone open-ce-1.5.2-py39-0 -y
+   $ conda activate /autofs/nccs-svm1_proj/<project_id>/<user_id>/dh
 
 Because we have cloned the base environment in Open-CE, our environment already has TensorFlow 2.7.1, TF Probability 0.15.0, Horovod 0.23.0. 
 
@@ -63,26 +64,25 @@ However, we still need to install CUDA-aware `mpi4py` using the system's optimiz
 
 .. code-block:: console
 
-    $ module load gcc
-    $ MPICC=mpicc pip install --force --no-cache-dir --no-binary=mpi4py mpi4py
+   $ module load gcc
+   $ MPICC=mpicc pip install --force --no-cache-dir --no-binary=mpi4py mpi4py
 
 Finally, we install DeepHyper:
 
 .. code-block:: console
 
-    $ pip install deephyper==0.4.1
-
+   $ pip install deephyper==0.4.2
 
 
 Running the installed DeepHyper
 ===============================
 
 Once DeepHyper is installed, one can use the DeepHyper after loading the modules and activating the user-cloned conda environment. For the LSTM example for SST data, first copy and paste the following scripts into a working folder on Summit:
-- `load_modules.sh <https://github.com/nesar/DeepHyperSwing/blob/main/saul/load_modules.sh>`_
-- `common.py <https://github.com/nesar/DeepHyperSwing/blob/main/saul/common.py>`_
-- `evaluator_mpi.py <https://github.com/nesar/DeepHyperSwing/blob/main/saul/evaluator_mpi.py>`_
-- `sst.py <https://github.com/nesar/DeepHyperSwing/blob/main/saul/sst.py>`_
-- `job_submit.sh <https://github.com/nesar/DeepHyperSwing/blob/main/saul/job_submit.sh>`_
+* `load_modules.sh <https://github.com/nesar/DeepHyperSwing/blob/main/saul/load_modules.sh>`_
+* `common.py <https://github.com/nesar/DeepHyperSwing/blob/main/saul/common.py>`_
+* `evaluator_mpi.py <https://github.com/nesar/DeepHyperSwing/blob/main/saul/evaluator_mpi.py>`_
+* `sst.py <https://github.com/nesar/DeepHyperSwing/blob/main/saul/sst.py>`_
+* `job_submit.sh <https://github.com/nesar/DeepHyperSwing/blob/main/saul/job_submit.sh>`_
  
  
 Using JupyterHub on Summit
