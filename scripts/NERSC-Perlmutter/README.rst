@@ -17,7 +17,7 @@ For connecting to Perlmutter, check `documentation <https://docs.nersc.gov/syste
 DeepHyper Installation
 ======================
 
-After logging in Perlmutter, use the `installation script <https://github.com/nesar/DeepHyperSwing/blob/main/saul/dh_install.sh>`_ provided to install DeepHyper and the associated dependencies. Download the file and run ``source dh_install.sh`` on the terminal. 
+After logging in Perlmutter, use the `installation script <https://github.com/deephyper/anl-22-summer-workshop/blob/main/scripts/NERSC-Perlmutter/dh_install.sh>`_ provided to install DeepHyper and the associated dependencies. Download the file and run ``source dh_install.sh`` on the terminal. 
 
 The script first loads the Perlmutter modules, including cuDNN. 
 
@@ -55,7 +55,7 @@ Finally we install deephyper and other packages.
 Running the installed DeepHyper
 ===============================
 
-Once DeepHyper is installed, one can use the deephyper after loading the modules and activating the conda environment. For the LSTM example for SST data, first copy and Paste the following scripts `load_modules.sh <https://github.com/nesar/DeepHyperSwing/blob/main/saul/load_modules.sh>`_, `common.py <https://github.com/nesar/DeepHyperSwing/blob/main/saul/common.py>`_, `evaluator_mpi.py <https://github.com/nesar/DeepHyperSwing/blob/main/saul/evaluator_mpi.py>`_,  `sst.py <https://github.com/nesar/DeepHyperSwing/blob/main/saul/sst.py>`_ and  `job_submit.sh <https://github.com/nesar/DeepHyperSwing/blob/main/saul/job_submit.sh>`_ on your folder on Perlmutter. 
+Once DeepHyper is installed, one can use the deephyper after loading the modules and activating the conda environment. For the LSTM example for SST data, first copy and Paste the following scripts `load_modules.sh <https://github.com/deephyper/anl-22-summer-workshop/blob/main/scripts/NERSC-Perlmutter/load_modules.sh>`_, `common.py <https://github.com/deephyper/anl-22-summer-workshop/blob/main/scripts/NERSC-Perlmutter/common.py>`_, `evaluator_mpi.py <https://github.com/deephyper/anl-22-summer-workshop/blob/main/scripts/NERSC-Perlmutter/evaluator_mpi.py>`_,  `sst.py <https://github.com/deephyper/anl-22-summer-workshop/blob/main/scripts/NERSC-Perlmutter/sst.py>`_ and  `job_submit.sh <https://github.com/deephyper/anl-22-summer-workshop/blob/main/scripts/NERSC-Perlmutter/job_submit.sh>`_ on your folder on Perlmutter. 
 
 
  
