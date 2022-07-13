@@ -29,50 +29,63 @@ For detailed instructions for connecting to OLCF resources for the first time, c
 DeepHyper Installation
 ======================
 
-After logging in Perlmutter, use the `installation script <https://github.com/nesar/DeepHyperSwing/blob/main/saul/dh_install.sh>`_ provided to install DeepHyper and the associated dependencies. Download the file and run ``source dh_install.sh`` on the terminal. 
 
-The script first loads the Perlmutter modules, including cuDNN. 
+It is recommended to create the custom environments in the “Project Home” directory (`/ccs/proj/<project_id>/<user_id>`. This storage space works better with compute nodes, in general.
 
-.. code-block:: console
+After logging in Summit, use the `installation script <https://github.com/deephyper/anl-22-summer-workshop/blob/main/scripts/OLCF-Summit/dh_install.sh>`_ provided to install DeepHyper and the associated dependencies. Download the file and run ``source dh_install.sh`` on the terminal. 
 
-    $ module load PrgEnv-nvidia cudatoolkit python
-    $ module load cudnn/8.2.0
-
-Next, we create a conda environment and install DeepHyper. 
+Lmod is the module system used on Summit. It is an extension of Environment Modules and can handle both Lua-based and Tcl-based modulefiles. The script first loads an Open-CE module, including cuDNN. 
 
 .. code-block:: console
 
-    $ conda create -n dh python=3.9 -y
-    $ conda activate dh
-    $ conda install gxx_linux-64 gcc_linux-64
+    $ module load open-ce/1.5.2-py39-0
+    $ module list
 
+As of July 2022, this should automatically load and return the following versions of Spectrum MPI, CUDA, etc:
 
-The crucial step is to install CUDA aware mpi4py, following the instructions given in the `mpi4py documentation <https://docs.nersc.gov/development/languages/python/using-python-perlmutter/#building-cuda-aware-mpi4py>`_
+.. code-block:: console
+		
+Currently Loaded Modules:
+  1) xl/16.1.1-10    4) darshan-runtime/3.3.0-lite   7) spectrum-mpi/10.4.0.3-20210112  10) cuda/11.0.3
+  2) lsf-tools/2.0   5) xalt/1.2.1                   8) nsight-compute/2021.2.1         11) open-ce/1.5.2-py39-0
+  3) hsi/5.0.2.p5    6) DefApps                      9) nsight-systems/2021.3.1.54
+
+Next, we create a cloned conda environment and install DeepHyper. 
+
+.. code-block:: console
+    $ cd /ccs/proj/<project_id>/<user_id>
+    $ conda create -p dh --clone open-ce-1.5.2-py39-0 -y
+    $ conda activate /autofs/nccs-svm1_proj/<project_id>/<user_id>/dh
+
+Because we have cloned the base environment in Open-CE, our environment already has TensorFlow 2.7.1, TF Probability 0.15.0, Horovod 0.23.0. 
+
+However, we still need to install CUDA-aware `mpi4py` using the system's optimized MPI library:
 
 .. code-block:: console
 
-    $ MPICC="cc -target-accel=nvidia80 -shared" CC=nvc CFLAGS="-noswitcherror" pip install --force --no-cache-dir --no-binary=mpi4py mpi4py
+    $ module load gcc
+    $ MPICC=mpicc pip install --force --no-cache-dir --no-binary=mpi4py mpi4py
 
-Finally we install deephyper and other packages. 
+Finally, we install DeepHyper:
 
 .. code-block:: console
 
     $ pip install deephyper==0.4.1
-    $ pip install tensorflow
-    $ pip install kiwisolver
-    $ pip install cycler
 
 
 
 Running the installed DeepHyper
 ===============================
 
-Once DeepHyper is installed, one can use the deephyper after loading the modules and activating the conda environment. For the LSTM example for SST data, first copy and Paste the following scripts `load_modules.sh <https://github.com/nesar/DeepHyperSwing/blob/main/saul/load_modules.sh>`_, `common.py <https://github.com/nesar/DeepHyperSwing/blob/main/saul/common.py>`_, `evaluator_mpi.py <https://github.com/nesar/DeepHyperSwing/blob/main/saul/evaluator_mpi.py>`_,  `sst.py <https://github.com/nesar/DeepHyperSwing/blob/main/saul/sst.py>`_ and  `job_submit.sh <https://github.com/nesar/DeepHyperSwing/blob/main/saul/job_submit.sh>`_ on your folder on Perlmutter. 
-
-
+Once DeepHyper is installed, one can use the DeepHyper after loading the modules and activating the user-cloned conda environment. For the LSTM example for SST data, first copy and paste the following scripts into a working folder on Summit:
+- `load_modules.sh <https://github.com/nesar/DeepHyperSwing/blob/main/saul/load_modules.sh>`_
+- `common.py <https://github.com/nesar/DeepHyperSwing/blob/main/saul/common.py>`_
+- `evaluator_mpi.py <https://github.com/nesar/DeepHyperSwing/blob/main/saul/evaluator_mpi.py>`_
+- `sst.py <https://github.com/nesar/DeepHyperSwing/blob/main/saul/sst.py>`_
+- `job_submit.sh <https://github.com/nesar/DeepHyperSwing/blob/main/saul/job_submit.sh>`_
  
  
-Using Jupyter notebook on Perlmutter
+Using JupyterHub on Summit
 ====================================
 
 NERSC also allows for launching jupyter kernel on Perlmutter. One can visit `jupyter.nersc.gov <https://jupyter.nersc.gov/>`_ and select Exclusive GPU node or a configurable GPU node (up to 4 GPU nodes, with 4 GPUs each). 
