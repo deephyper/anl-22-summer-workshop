@@ -34,11 +34,13 @@ It is recommended to create the custom environments in the “Project Home” di
 
 After logging in Summit, use the `installation script <https://github.com/deephyper/anl-22-summer-workshop/blob/main/scripts/OLCF-Summit/dh_install.sh>`_ provided to install DeepHyper and the associated dependencies. Download the file and run ``source dh_install.sh`` on the terminal. 
 
+Unlike ThetaGPU, the Summit login nodes have GPUs attached to them. Build toolchains that depend on detecting the presence of a GPU and/or the matching CUDA libraries will work on the login nodes typically as well as they would on the compute nodes. We will therefore build DeepHyper on a login node. 
+
 Lmod is the module system used on Summit. It is an extension of Environment Modules and can handle both Lua-based and Tcl-based modulefiles. The script first loads an Open-CE module, including cuDNN. 
 
 .. code-block:: console
 
-   $ module load open-ce/1.5.2-py39-0
+   $ module load open-ce/1.5.0-py38-0
    $ module list
 
 As of July 2022, this should automatically load and return the following versions of Spectrum MPI, CUDA, etc:
@@ -55,7 +57,7 @@ Next, we create a cloned conda environment and install DeepHyper.
 .. code-block:: console
 
    $ cd /ccs/proj/<project_id>/<user_id>
-   $ conda create -p dh --clone open-ce-1.5.2-py39-0 -y
+   $ conda create -p dh --clone open-ce-1.5.0-py38-0 -y
    $ conda activate /autofs/nccs-svm1_proj/<project_id>/<user_id>/dh
 
 Because we have cloned the base environment in Open-CE, our environment already has TensorFlow 2.7.1, TF Probability 0.15.0, Horovod 0.23.0. 
@@ -66,6 +68,8 @@ However, we still need to install CUDA-aware `mpi4py` using the system's optimiz
 
    $ module load gcc
    $ MPICC=mpicc pip install --force --no-cache-dir --no-binary=mpi4py mpi4py
+
+Currently there is an issue with building ``mpi4py`` with the ``open-ce/1.5.2-py39-0`` module. 
 
 Finally, we install DeepHyper:
 
@@ -88,6 +92,14 @@ Once DeepHyper is installed, one can use the DeepHyper after loading the modules
  
 Using JupyterHub on Summit
 ====================================
+There are two JupyterHub/JupyterLab sites for all OLCF users, depending on the level of security associated with the account and project:
 
-NERSC also allows for launching jupyter kernel on Perlmutter. One can visit `jupyter.nersc.gov <https://jupyter.nersc.gov/>`_ and select Exclusive GPU node or a configurable GPU node (up to 4 GPU nodes, with 4 GPUs each). 
+* OLCF Moderate: https://jupyter.olcf.ornl.gov/
+* OLCF Open: https://jupyter-open.olcf.ornl.gov/
+
+Unfortunately, GPU environments are only available within the OLCF Moderate JupyterHub. Each GPU kernel gets 16 CPU cores and a single NVIDIA V100. 
+
+See 
+`Jupyter at OLCF <https://docs.olcf.ornl.gov/services_and_applications/jupyter/overview.html#jupyter-at-olcf>`_ for more detailed information. 
+
  
