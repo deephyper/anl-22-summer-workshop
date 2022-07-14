@@ -49,7 +49,7 @@ As of July 2022, this should automatically load and return the following version
 
    Currently Loaded Modules:
      1) xl/16.1.1-10    4) darshan-runtime/3.3.0-lite   7) spectrum-mpi/10.4.0.3-20210112  10) cuda/11.0.3
-     2) lsf-tools/2.0   5) xalt/1.2.1                   8) nsight-compute/2021.2.1         11) open-ce/1.5.2-py39-0
+     2) lsf-tools/2.0   5) xalt/1.2.1                   8) nsight-compute/2021.2.1         11) open-ce/1.5.2-py38-0
      3) hsi/5.0.2.p5    6) DefApps                      9) nsight-systems/2021.3.1.54
 
 Next, we create a cloned conda environment and install DeepHyper. 
