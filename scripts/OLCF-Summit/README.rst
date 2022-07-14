@@ -97,7 +97,10 @@ There are two JupyterHub/JupyterLab sites for all OLCF users, depending on the l
 * OLCF Moderate: https://jupyter.olcf.ornl.gov/
 * OLCF Open: https://jupyter-open.olcf.ornl.gov/
 
-Unfortunately, GPU environments are only available within the OLCF Moderate JupyterHub. Each GPU kernel gets 16 CPU cores and a single NVIDIA V100. 
+Unfortunately, GPU environments are only available within the OLCF Moderate JupyterHub. Each GPU kernel gets 16 CPU cores and a single NVIDIA V100, as indicated here:
+
+.. image:: assets/jupyterhub-moderate.png
+   :width: 600
 
 See 
 `Jupyter at OLCF <https://docs.olcf.ornl.gov/services_and_applications/jupyter/overview.html#jupyter-at-olcf>`_ for more detailed information. 
