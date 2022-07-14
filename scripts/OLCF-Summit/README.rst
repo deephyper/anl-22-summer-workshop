@@ -30,7 +30,7 @@ DeepHyper Installation
 ======================
 
 
-It is recommended to create the custom environments in the “Project Home” directory (`/ccs/proj/<project_id>/<user_id>`. This storage space works better with compute nodes, in general.
+It is recommended to create the custom environments in the “Project Home” directory (``/ccs/proj/<project_id>/<user_id>``. This storage space works better with compute nodes, in general.
 
 After logging in Summit, use the `installation script <https://github.com/deephyper/anl-22-summer-workshop/blob/main/scripts/OLCF-Summit/dh_install.sh>`_ provided to install DeepHyper and the associated dependencies. Download the file and run ``source dh_install.sh`` on the terminal. 
 
@@ -78,6 +78,7 @@ Running the installed DeepHyper
 ===============================
 
 Once DeepHyper is installed, one can use the DeepHyper after loading the modules and activating the user-cloned conda environment. For the LSTM example for SST data, first copy and paste the following scripts into a working folder on Summit:
+
 * `load_modules.sh <https://github.com/nesar/DeepHyperSwing/blob/main/saul/load_modules.sh>`_
 * `common.py <https://github.com/nesar/DeepHyperSwing/blob/main/saul/common.py>`_
 * `evaluator_mpi.py <https://github.com/nesar/DeepHyperSwing/blob/main/saul/evaluator_mpi.py>`_
