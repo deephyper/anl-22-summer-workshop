@@ -1,5 +1,6 @@
 #!/bin/bash
 
+. /etc/profile
 set -e
 
 module load open-ce/1.5.0-py38-0
@@ -8,7 +9,7 @@ conda create -p dh --clone open-ce-1.5.0-py38-0 -y
 # module load open-ce/1.5.2-py39-0
 # conda create -p dh --clone open-ce-1.5.2-py39-0 -y
 
-conda activate dh
+conda activate dh/
 
 module load gcc
 
