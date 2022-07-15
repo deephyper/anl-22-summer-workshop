@@ -76,6 +76,7 @@ Finally, we install DeepHyper:
 .. code-block:: console
 
    $ pip install deephyper==0.4.2
+   $ pip install matplotlib
 
 
 Running the installed DeepHyper
