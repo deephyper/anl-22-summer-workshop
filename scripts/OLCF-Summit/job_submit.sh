@@ -17,7 +17,7 @@ RANKS_PER_NODE=6
 
 # Initialization of environment
 source $INIT_SCRIPT
-
+cd anl-22-summer-workshop/
 jsrun -n $(( $NUM_NODES * $RANKS_PER_NODE )) -r6 -g1 -a1 -c1 python evaluator_mpi.py
 
 
