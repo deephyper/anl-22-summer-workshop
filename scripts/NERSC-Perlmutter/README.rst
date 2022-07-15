@@ -45,7 +45,7 @@ Finally we install deephyper and other packages.
 
 .. code-block:: console
 
-    $ pip install deephyper==0.4.1
+    $ pip install deephyper==0.4.2
     $ pip install tensorflow
     $ pip install kiwisolver
     $ pip install cycler

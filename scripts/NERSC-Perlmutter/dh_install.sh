@@ -13,7 +13,7 @@ conda install gxx_linux-64 gcc_linux-64
 MPICC="cc -target-accel=nvidia80 -shared" CC=nvc CFLAGS="-noswitcherror" pip install --force --no-cache-dir --no-binary=mpi4py mpi4py
 
 #INSTALLING OTHER DEPENDENCIES
-pip install deephyper==0.4.1
+pip install deephyper==0.4.2
 pip install tensorflow
 pip install kiwisolver
 pip install cycler
