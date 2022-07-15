@@ -20,4 +20,4 @@ MPICC=mpicc pip install --force --no-cache-dir --no-binary=mpi4py mpi4py
 # MPICC=mpicc python setup.py install
 
 pip install deephyper==0.4.2
-pip install matplotlib
+pip install matplotlib progressbar
