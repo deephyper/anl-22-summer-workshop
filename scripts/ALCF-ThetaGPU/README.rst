@@ -96,19 +96,18 @@ Note that you need to copy `utils.py <https://github.com/deephyper/anl-22-summer
         MPI.Init_thread()
 
     comm = MPI.COMM_WORLD
-    rank = comm.Get_rank()
-
-    gpu_per_node = 8
-    gpu_local_idx = rank % gpu_per_node
-    node = int(rank / gpu_per_node)
+    # GLOBAL_RANK: [0, 1, ..., N_ranks]
+    RANK = comm.Get_rank()
 
     import tensorflow as tf
     gpus = tf.config.list_physical_devices("GPU")
+    # LOCAL RANK (index): [0, 1, ..., len(gpus)]
+    IDX = (RANK % len(gpus))
     if gpus:
-        # Restrict TensorFlow to only use the first GPU
+        # Attribute 1 GPU to each rank
         try:
-            tf.config.set_visible_devices(gpus[gpu_local_idx], "GPU")
-            tf.config.experimental.set_memory_growth(gpus[gpu_local_idx], True)
+            tf.config.set_visible_devices(gpus[IDX], "GPU")
+            tf.config.experimental.set_memory_growth(gpus[IDX], True)
             logical_gpus = tf.config.list_logical_devices("GPU")
         except RuntimeError as e:
             # Visible devices must be set before GPUs have been initialized
@@ -119,6 +118,7 @@ Note that you need to copy `utils.py <https://github.com/deephyper/anl-22-summer
     from deephyper.evaluator import Evaluator
 
     n_components = 5
+    # Only load data from RANK 0
     if gpu_local_idx == 0:
         load_data_prepared(
             n_components=n_components
