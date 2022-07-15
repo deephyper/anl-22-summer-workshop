@@ -81,7 +81,7 @@ Finally, we install DeepHyper:
 Running the installed DeepHyper
 ===============================
 
-Once DeepHyper is installed, one can use the DeepHyper after loading the modules and activating the user-cloned conda environment. For the LSTM example for SST data, first copy and paste the following scripts into a working folder on Summit:
+Once DeepHyper is installed, one can use the DeepHyper after loading the modules and activating the user-cloned conda environment. For the LSTM example for SST data, first copy and paste the following scripts into the parent folder of the cloned conda environment on Summit:
 
 * `load_modules.sh <https://github.com/nesar/DeepHyperSwing/blob/main/saul/load_modules.sh>`_
 * `common.py <https://github.com/nesar/DeepHyperSwing/blob/main/saul/common.py>`_
@@ -97,10 +97,14 @@ There are two JupyterHub/JupyterLab sites for all OLCF users, depending on the l
 * OLCF Moderate: https://jupyter.olcf.ornl.gov/
 * OLCF Open: https://jupyter-open.olcf.ornl.gov/
 
-Unfortunately, GPU environments are only available within the OLCF Moderate JupyterHub. Each GPU kernel gets 16 CPU cores and a single NVIDIA V100, as indicated here:
+GPU environments are only available within the OLCF Moderate JupyterHub. Each GPU kernel gets 16 CPU cores and a single NVIDIA V100, as indicated here:
 
 .. image:: assets/jupyterhub-moderate.png
    :width: 600
+
+Unfortunately, we cannot use the same user-customized cloned conda environment created above (to run the jobs on Summit) here within JupyterHub to perform DeepHyper analytics. We must clone a new conda environment, and register the environment as a Jupyter kernelspec with ``python -m ipykernel install --user --name yourenvname --display-name yourenvname``: 
+
+   Conda environments created this way are only usable in JupyterLab. You can’t create an environment within JupyterLab and use these environments on other machines like Summit or Andes to run jobs. You will need to recreate the environment separately on those machines.
 
 See 
 `Jupyter at OLCF <https://docs.olcf.ornl.gov/services_and_applications/jupyter/overview.html#jupyter-at-olcf>`_ for more detailed information. 
