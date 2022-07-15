@@ -83,12 +83,11 @@ Running the installed DeepHyper
 ===============================
 
 Once DeepHyper is installed, one can use the DeepHyper after loading the modules and activating the user-cloned conda environment. For the LSTM example for SST data, first copy and paste the following scripts into the parent folder of the cloned conda environment on Summit:
-
-* `load_modules.sh <https://github.com/nesar/DeepHyperSwing/blob/main/saul/load_modules.sh>`_
-* `common.py <https://github.com/nesar/DeepHyperSwing/blob/main/saul/common.py>`_
-* `evaluator_mpi.py <https://github.com/nesar/DeepHyperSwing/blob/main/saul/evaluator_mpi.py>`_
-* `sst.py <https://github.com/nesar/DeepHyperSwing/blob/main/saul/sst.py>`_
-* `job_submit.sh <https://github.com/nesar/DeepHyperSwing/blob/main/saul/job_submit.sh>`_
+* `load_modules.sh <https://github.com/deephyper/anl-22-summer-workshop/blob/main/scripts/OLCF-Summit/load_modules.sh>`_
+* `common.py <https://github.com/deephyper/anl-22-summer-workshop/blob/main/scripts/OLCF-Summit/common.py>`_
+* `evaluator_mpi.py <https://github.com/deephyper/anl-22-summer-workshop/blob/main/scripts/OLCF-Summit/evaluator_mpi.py>`_
+* `sst.py <https://github.com/deephyper/anl-22-summer-workshop/blob/main/scripts/OLCF-Summit/sst.py>`_
+* `job_submit.sh <https://github.com/deephyper/anl-22-summer-workshop/blob/main/scripts/OLCF-Summit/job_submit.sh>`_
  
  
 Using JupyterHub on Summit
