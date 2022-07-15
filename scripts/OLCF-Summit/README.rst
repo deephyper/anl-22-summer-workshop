@@ -76,13 +76,14 @@ Finally, we install DeepHyper:
 .. code-block:: console
 
    $ pip install deephyper==0.4.2
-   $ pip install matplotlib
+   $ pip install matplotlib progressbar
 
 
 Running the installed DeepHyper
 ===============================
 
 Once DeepHyper is installed, one can use the DeepHyper after loading the modules and activating the user-cloned conda environment. For the LSTM example for SST data, first copy and paste the following scripts into the parent folder of the cloned conda environment on Summit:
+
 * `load_modules.sh <https://github.com/deephyper/anl-22-summer-workshop/blob/main/scripts/OLCF-Summit/load_modules.sh>`_
 * `common.py <https://github.com/deephyper/anl-22-summer-workshop/blob/main/scripts/OLCF-Summit/common.py>`_
 * `evaluator_mpi.py <https://github.com/deephyper/anl-22-summer-workshop/blob/main/scripts/OLCF-Summit/evaluator_mpi.py>`_
