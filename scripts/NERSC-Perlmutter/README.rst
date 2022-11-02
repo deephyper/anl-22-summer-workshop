@@ -30,8 +30,8 @@ Next, we create a conda environment and install DeepHyper.
 
 .. code-block:: console
 
-    $ conda create -n dh python=3.9 -y
-    $ conda activate dh
+    $ conda create -n dhenv python=3.9 -y
+    $ conda activate dhenv
     $ conda install gxx_linux-64 gcc_linux-64
 
 
@@ -41,15 +41,23 @@ The crucial step is to install CUDA aware mpi4py, following the instructions giv
 
     $ MPICC="cc -target-accel=nvidia80 -shared" CC=nvc CFLAGS="-noswitcherror" pip install --force --no-cache-dir --no-binary=mpi4py mpi4py
 
-Finally we install deephyper and other packages. 
+Then we install deephyper and other packages. 
 
 .. code-block:: console
 
     $ pip install deephyper==0.4.2
-    $ pip install tensorflow
+    $ pip install tensorflow==2.9.2
     $ pip install kiwisolver
     $ pip install cycler
+    $ pip install matplotlib
+    $ pip install progressbar2
+    $ pip install networkx[default]
 
+Finally, it is important to copy the ``../../data`` directy in the current folder:
+
+.. code-block:: console
+
+    $ cp -r ../../data data
 
 
 Running the installed DeepHyper

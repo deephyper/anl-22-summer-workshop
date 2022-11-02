@@ -1,22 +1,19 @@
 import time
-import numpy as np
 from deephyper.problem import HpProblem
 from deephyper.evaluator import profile
-import gzip
-import matplotlib.pyplot as plt
 import tensorflow as tf
-from data.utils import load_sst_data, load_data_prepared
-from sklearn.decomposition import PCA
-from deephyper.nas.metrics import r2
+from data.utils import load_data_prepared
 
 
-## Define the HP problem 
+## Define the HP problem
 
 problem = HpProblem()
 problem.add_hyperparameter((10, 256), "units", default_value=128)
 # problem.add_hyperparameter(["sigmoid", "tanh", "relu"], "activation", default_value="tanh") ## This is not cuDNN compatible
 # problem.add_hyperparameter(["sigmoid", "tanh", "relu"], "recurrent_activation", default_value="sigmoid") ## This is not cuDNN compatible
-problem.add_hyperparameter((1e-5, 1e-2, "log-uniform"), "learning_rate", default_value=1e-3)
+problem.add_hyperparameter(
+    (1e-5, 1e-2, "log-uniform"), "learning_rate", default_value=1e-3
+)
 problem.add_hyperparameter((2, 64), "batch_size", default_value=64)
 problem.add_hyperparameter((0.0, 0.5), "dropout_rate", default_value=0.0)
 problem.add_hyperparameter((1, 3), "num_layers", default_value=1)
@@ -66,23 +63,23 @@ def build_and_train_model(config: dict, n_components: int = 5, verbose: bool = 0
 
     layers = []
     for _ in range(default_config["num_layers"]):
-        
+
         # lstm_layer = tf.keras.layers.LSTM(
         #     default_config["lstm_units"],
         #     activation=default_config["activation"],
         #     recurrent_activation=default_config["recurrent_activation"],
         #     return_sequences=True,
         # ) ## This is not cuDNN compatible
-        
+
         lstm_layer = tf.keras.layers.LSTM(
             default_config["lstm_units"],
             activation="tanh",
             recurrent_activation="sigmoid",
             return_sequences=True,
             recurrent_dropout=0.0,
-            use_bias=True
-        ) ## This is cuDNN compatible
-        
+            use_bias=True,
+        )  ## This is cuDNN compatible
+
         dropout_layer = tf.keras.layers.Dropout(default_config["dropout_rate"])
         layers.extend([lstm_layer, dropout_layer])
 
@@ -110,15 +107,13 @@ def build_and_train_model(config: dict, n_components: int = 5, verbose: bool = 0
     return model, history
 
 
-
-
 @profile
 def run(config):
     # important to avoid memory exploision
     tf.keras.backend.clear_session()
-    
+
     n_components = 5
-    
+
     _, history = build_and_train_model(config, n_components=n_components, verbose=0)
 
     return -history["val_loss"][-1]
